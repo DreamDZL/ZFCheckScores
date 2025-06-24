@@ -160,7 +160,22 @@ integrated_grade_info += f"\n" f"MD5：{encrypted_integrated_grade_info}"
 selected_courses_filtering = get_selected_courses(student_client)
 
 # 工作流信息
-
+workflow_info = (
+    f"------\n"
+    f"工作流信息：\n"
+    f"Force Push Message：{force_push_message}\n"
+    f"Branch Name：{github_ref_name}\n"
+    f"Triggered By：{github_event_name}\n"
+    f"Initial Run By：{github_actor}\n"
+    f"Initial Run By ID：{github_actor_id}\n"
+    f"Initiated Run By：{github_triggering_actor}\n"
+    f"Repository Name：{repository_name}\n"
+    f"Commit SHA：{github_sha}\n"
+    f"Workflow Name：{github_workflow}\n"
+    f"Workflow Number：{github_run_number}\n"
+    f"Workflow ID：{github_run_id}\n"
+    f"Beijing Time：{beijing_time}"
+)
 
 # 第一次运行时的提示文本
 first_run_text = (
