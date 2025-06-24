@@ -177,6 +177,8 @@ workflow_info = (
     f"Beijing Time：{beijing_time}"
 )
 
+copyright_text = "Copyright © 2024 NianBroken. All rights reserved."
+
 # 第一次运行时的提示文本
 first_run_text = (
     "你的程序运行成功\n"
@@ -192,6 +194,8 @@ integrated_send_info = (
     f"{integrated_info}\n"
     f"{integrated_grade_info}\n"
     f"{selected_courses_filtering}\n"
+    f"{workflow_info if github_actions else current_time}\n"
+    f"{copyright_text}"
 )
 
 # 整合首次运行时需要使用到的所有信息
@@ -237,7 +241,7 @@ else:
             # 推送信息
             response_text = send_message(
                 token,
-                "HZCU学业成绩推送",
+                "正方教务管理系统成绩推送",
                 grades_updated_push_integrated_send_info,
             )
             # 输出响应内容
@@ -264,7 +268,7 @@ if run_log:
     if github_actions:
         # 整合JobSummary信息
         github_step_summary_run_log = (
-            f"# HZCU学业成绩推送\n{run_log}\n{workflow_info}\n{copyright_text}"
+            f"# 正方教务管理系统成绩推送\n{run_log}\n{workflow_info}\n{copyright_text}"
         )
         # 定义正则表达式模式
         error_content_pattern = r"你因(.*?)原因而运行失败。"
