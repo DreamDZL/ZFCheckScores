@@ -160,24 +160,7 @@ integrated_grade_info += f"\n" f"MD5：{encrypted_integrated_grade_info}"
 selected_courses_filtering = get_selected_courses(student_client)
 
 # 工作流信息
-workflow_info = (
-    f"------\n"
-    f"工作流信息：\n"
-    f"Force Push Message：{force_push_message}\n"
-    f"Branch Name：{github_ref_name}\n"
-    f"Triggered By：{github_event_name}\n"
-    f"Initial Run By：{github_actor}\n"
-    f"Initial Run By ID：{github_actor_id}\n"
-    f"Initiated Run By：{github_triggering_actor}\n"
-    f"Repository Name：{repository_name}\n"
-    f"Commit SHA：{github_sha}\n"
-    f"Workflow Name：{github_workflow}\n"
-    f"Workflow Number：{github_run_number}\n"
-    f"Workflow ID：{github_run_id}\n"
-    f"Beijing Time：{beijing_time}"
-)
 
-copyright_text = "Copyright © 2024 NianBroken. All rights reserved."
 
 # 第一次运行时的提示文本
 first_run_text = (
@@ -194,8 +177,6 @@ integrated_send_info = (
     f"{integrated_info}\n"
     f"{integrated_grade_info}\n"
     f"{selected_courses_filtering}\n"
-    f"{workflow_info if github_actions else current_time}\n"
-    f"{copyright_text}"
 )
 
 # 整合首次运行时需要使用到的所有信息
@@ -241,7 +222,7 @@ else:
             # 推送信息
             response_text = send_message(
                 token,
-                "正方教务管理系统成绩推送",
+                "HZCU学业成绩推送",
                 grades_updated_push_integrated_send_info,
             )
             # 输出响应内容
@@ -268,7 +249,7 @@ if run_log:
     if github_actions:
         # 整合JobSummary信息
         github_step_summary_run_log = (
-            f"# 正方教务管理系统成绩推送\n{run_log}\n{workflow_info}\n{copyright_text}"
+            f"# HZCU学业成绩推送\n{run_log}\n{workflow_info}\n{copyright_text}"
         )
         # 定义正则表达式模式
         error_content_pattern = r"你因(.*?)原因而运行失败。"
